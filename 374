@@ -22,7 +22,7 @@ public:
             while(low<high)
             {
                 //int mid = (low+high)/2;  额，简直了，用这个方法求中值就会超时。。
-                int mid = low+(high-low)/2;
+                int mid = low+((high-low) >>1);
                 int key = guess(mid);
                 if(-1==key)
                 {
