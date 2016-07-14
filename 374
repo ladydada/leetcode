@@ -9,22 +9,40 @@ Return 6.
 // Forward declaration of guess API.
 // @param num, your guess
 // @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
-int guess(int num);
 
+int guess(int num);
 class Solution {
 public:
     int guessNumber(int n) {
-        if(1==n)
-            return 1;
+        if(0==guess(n))
+            return n ;
         else
         {
-            int mid = n/2;
-            if(guess(mid)==-1)
-                return guessNumber(mid+n);
-            else if(guess(mid)==1)
-                return guessNumber(mid);
-            else
-                return mid;
+            int low=1,high=n;
+            while(low<high)
+            {
+                //int mid = (low+high)/2;  额，简直了，用这个方法求中值就会超时。。
+                int mid = low+(high-low)/2;
+                int key = guess(mid);
+                if(-1==key)
+                {
+                    high = mid;
+                }
+                else if(1==key)
+                {
+                    low = mid;
+                }
+                else
+                    return mid;
+            }
+            return low;
         }
+
     }
+    
 };
+
+
+
+
+        
