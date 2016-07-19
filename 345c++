@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+ bool isvowels(string ls,char x)
+{
+    if(ls.find(x) >5)
+        return false;
+    else
+        return  true;
+}
+
+void  vow(string &in,int low,int high)
+{
+    if (low==high)
+        return ;
+    string ls = "aeiou";
+    while(low <high)
+    {
+         while(!isvowels(ls,in[low]))
+        {
+            low++;
+            if(low >=high)
+                return ;
+        }
+        char left = in[low];
+        while(!isvowels(ls,in[high]))
+        {
+            high--;
+            if(high == low)
+                return ;
+        }
+        char right = in[high];
+        in[low] = right;
+        in[high]=left;
+        low++;
+        high--;
+
+    }
+    return ;
+
+
+}
+
+int main()
+{
+    string str = "hahaluyo";
+    int len = str.length();
+    vow(str,0,len-1);
+    cout <<str;
+    return 0;
+}
